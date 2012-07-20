@@ -2,7 +2,7 @@
 # All python requirements are installed into a virtual environment
 
 echo "install virtual env"
-sudo pip virtualenv
+sudo easy_install virtualenv
 
 echo "create and activate virtual environment"
 virtualenv --no-site-packages env

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <!-- ================================================================
+        Title 
+        ================================================================== -->
+    <title>{% block head_title %}{% endblock %} vasir.net | Erik Hazzard</title>
+
+    <!-- ================================================================
+        Style
+        ================================================================== -->
+        <!-- Base style -->
+        <link rel='stylesheet' href='http://vasirsite.s3.amazonaws.com/css/style.css' />
+
+        <!-- Google Fonts -->
+        <link rel='stylesheet' 
+            href='http://fonts.googleapis.com/css?family=IM+Fell+English|Inconsolata|Cuprum|Cantarell|Voltaire|Questrial|Reenie+Beanie' />
+        <!-- IPAD Style (Portrait) -->
+        <!--<link rel='stylesheet' media="only screen and (orientation:portrait)" 
+            href='/static/vasir/css/portrait.css' />-->
+
+    <!-- ================================================================
+        RSS 
+        ================================================================== -->
+        <link rel='alternate' type='application/atom+xml' title='RSS Feed'
+            href='/feed' />
+</head>
+<body>
+<!-- Site Wrapper -->
+<div id='site_wrapper'>
+
+ <!-- ================================
+    Header
+    ================================= -->
+    <div id='header_wrapper'>
+        <div id='header'>
+            <div id='logo'>
+                <a href='/' rel='nofollow'
+                    title='Personal page of Erik Hazzard'>Erik Hazzard</a>
+            </div>
+
+            <div id='site_nav_wrapper'>
+                <div id='site_nav'>
+                    <ul>
+                        <li>
+                            <a href='/blog/' rel='nofollow' 
+                                {% if '/blog/' in request.path %}
+                                    class='active_link'
+                                {% endif %}
+                                title='Blog'>Blog</a>
+                        </li>
+                        <li>
+                            <a href='/openlayers_book/' rel='nofollow' 
+                                {% if '/openlayers_book/' in request.path %}
+                                    class='active_link'
+                                {% endif %}
+                                title='OpenLayers Book'>Book</a>
+                        </li>
+                        <li>
+                            <a href='/dev/' rel='nofollow' 
+                                {% if '/dev/' in request.path %}
+                                    class='active_link'
+                                {% endif %}
+                                title='Dev'>Dev</a>
+                        </li>
+                        <li>
+                            <a href='/about/' rel='nofollow' 
+                                {% if '/about/' in request.path %}
+                                    class='active_link'
+                                {% endif %}
+                                title='About'>About</a>
+                        </li>
+                        <li>
+                            <a href='/' rel='nofollow' 
+                                {% if request.path == '/' %}
+                                    class='active_link'
+                                {% endif %}
+                                title='Home'>Home</a>
+                        </li>
+                    </ul>
+                    <div class='clear'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- ================================
+    Content 
+    ================================= -->
+    <div id='content_wrapper'>
+        <div id='content'>
+            {% block site_content %}
+            {% endblock %}
+        </div>
+    </div>
+
+<!-- ================================
+    Footer 
+    ================================= -->
+    <div id='footer_wrapper'>
+        <div id='footer' class='grey_text'>
+            Erik Hazzard  - 
+            <span class='email'>
+                liamg [ta] 1xeone 
+            </span>
+            <br />
+            <a class='font_small' href='/feed/' title='RSS Feed' 
+                target='_blank'
+                rel='nofollow'>RSS Feed</a>
+    </div>
+</div>
+<!-- ================================================================
+    Bottom Javascript 
+    ================================================================== -->
+{% block bottom_javascript %}
+{% endblock bottom_javascript %}
+
+<!-- Google Tracking -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2994714-13']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

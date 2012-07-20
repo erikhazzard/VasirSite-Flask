@@ -35,7 +35,7 @@ def render_skeleton(template_name='index.html', **kwargs):
 
 @app.route('/')
 def index():
-    return flask.render_template('index.html')
+    return flask.render_template('home.html')
 
 # ==============================================================================
 #
