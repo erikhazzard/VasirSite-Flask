@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>vasir.net | OpenLayers Tutorial Part 3 | Controls Example 6</title>
+</head>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<script type="text/javascript">
+
+//Set up a global variable to hold our map object
+var map;
+
+function init(){
+
+    map = new OpenLayers.Map('map');
+
+    var wms = new OpenLayers.Layer.WMS(
+    "OpenLayers WMS",
+    "http://labs.metacarta.com/wms/vmap0",
+    {layers: 'basic'}
+    );
+     
+    map.addLayers([wms]);
+
+    map.addControl(new OpenLayers.Control.OverviewMap(
+                {autoPan:true,
+                layers: [new OpenLayers.Layer.WMS("OverviewMap",
+                    "http://labs.metacarta.com/wms/vmap0", 
+                    {layers: 'country_01'})]
+                }
+                ));
+
+    map.zoomToMaxExtent();
+}
+</script>
+<style>
+.olControlOverviewMap {
+    background:#ff0000;
+    width:200px;
+}
+.olControlOverviewMapElement {
+    background:#00ff00 !important;
+}
+</style>
+<body onload="init()">
+
+<div id="map" style="width: 600px; height: 300px"></div>
+<div id="controls"></div>
+</body>
+</html>    

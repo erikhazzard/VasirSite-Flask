@@ -1,0 +1,97 @@
+{% extends "_base.html" %}
+
+{% block site_content %}
+<div id='blog_left_side'>
+    {% block content_left %}
+
+    {% endblock content_left %}
+</div>
+<div id='blog_right_side'>
+    {% block content_right %}
+        <!-- About block -->
+        <div class='blog_right_side_block'>
+            <h3>RSS Feed</h3>
+            <a href='/feed/' title='RSS Feed' 
+                target='_blank'
+                rel='nofollow'>Subscribe to the RSS Feed</a>
+        </div>
+
+        <!-- Blog categories -->
+        <div class='blog_right_side_block'>
+            <h3>Categories</h3>
+            <ul>
+                <li>
+                    <a href='/blog/' title='All Categories'>
+                        All Categories
+                    </a>
+                    <span class='total_post_count'>
+                        (<strong>{{all_total_posts}}</strong>)
+                    </span>
+                </li>
+            {% for category in all_categories %}
+                <li>
+                    <a href='/blog/{{category.slug}}/'
+                        title='{{category.description}}'>
+                        {{category.name}}
+                    </a>
+                    <span class='total_post_count'>
+                        (<strong>{{category.get_post_count}}</strong>)
+                    </span>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+       
+        <!-- Tutorials -->
+        <div class='blog_right_side_block'>
+            <h3>Tutorials</h3>
+            <ul>
+                <li>
+                    <a href='/blog/by/tag/openlayers_tutorial/'
+                        title='Tutorial covering OpenLayers'>
+                        OpenLayers Tutorial
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Latest posts -->
+        <div class='blog_right_side_block'>
+            <h3>Latest Posts</h3>
+            <ul>
+            {% for post in latest_posts %}
+                <li>
+                    <a href='/blog/{{post.category.slug}}/{{post.slug}}/'
+                        title='{{post.description}}'>
+                        {{post.title}}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+ 
+        <!-- Ads -->
+        <div class='blog_right_side_block ad_container'>
+            <h3>Support Me</h3>
+            <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-7599959935551309";
+                /* 300x250, created 10/23/09 */
+                google_ad_slot = "1397682098";
+                google_ad_width = 300;
+                google_ad_height = 250;
+                //-->
+            </script>
+            <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
+
+
+    {% endblock content_right %}
+</div>
+<div class='clear'></div>
+    <!-- Disqus comment area -->
+    {% block comments %}
+
+    {% endblock %}
+{% endblock site_content %}

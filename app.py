@@ -37,6 +37,21 @@ def render_skeleton(template_name='index.html', **kwargs):
 def index():
     return flask.render_template('home.html')
 
+@app.route('/about/')
+def about():
+    return flask.render_template('about.html')
+
+@app.route('/dev/')
+def dev():
+    return flask.render_template('dev.html')
+
+@app.route('/openlayers_book/')
+def book():
+    return flask.render_template('openlayers_book.html')
+
+@app.route('/blog/')
+def blog():
+    return flask.render_template('blog.html')
 # ==============================================================================
 #
 # Posts

@@ -1,4 +1,4 @@
 Flask==0.8
 pymongo==2.1.1
-gunicorn==0.14.5
 gevent==0.13.7
+gunicorn==0.14.5

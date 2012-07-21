@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html lang='en'> 
+<head> 
+    <meta charset='utf-8' /> 
+    <script type='text/javascript' src='OpenLayers.js'></script>
+</head>
+<body>
+    <div id='map_element' style='width: 500px; height: 500px;'></div>
+</body>
+
+<script type='text/javascript'>
+    //Define a global variable called map so we can access it outside the
+    //  init() function
+    var map;
+
+    function init() {
+        map = new OpenLayers.Map('map_element', {
+            maxExtent: new OpenLayers.Bounds(-180,-90,0,0),
+            controls: []
+        });
+        var wms_layer = new OpenLayers.Layer.WMS(
+            'OpenLayers WMS',
+            'http://vmap0.tiles.osgeo.org/wms/vmap0',
+            {layers: 'basic'},
+            {}
+        );
+     
+        map.addLayer(wms_layer);
+        
+        if(!map.getCenter()){
+            map.zoomToMaxExtent();
+        }
+    }
+    
+    //Call init function
+    init();
+</script>
+</html>

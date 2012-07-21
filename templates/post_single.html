@@ -1,0 +1,53 @@
+{% extends "blog_base.html" %}
+
+{% block head_title %}
+    {{post.title}} | 
+{% endblock head_title %}
+
+{% block content_left %}
+<div class='post_single_wrapper'>
+    <div class='post_single_title'>
+        <h1>{{post.title}}</h1>
+    </div>
+    <div class='grey_text post_submission_info'>
+        Posted in 
+        <a href='/blog/{{post.category.slug}}/'
+            title='{{post.category.name}}'>
+            {{post.category.name}}</a>
+        on {{post.post_date}}
+    </div>
+    <!-- POST CONTENT -->
+    <div class='post_single_content'>
+        {{post.content|safe}}
+    </div>
+    <!-- POST CONTENT END -->
+</div>
+{% endblock content_left %}
+
+{% block comments %}
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://vasir.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=vasir">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+{% endblock comments %}
+
+{% block bottom_javascript %}
+<script type="text/javascript">
+var disqus_shortname = 'vasir';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/vasir/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+{% endblock bottom_javascript %}

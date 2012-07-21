@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html lang='en'> 
+<head> 
+    <meta charset='utf-8' /> 
+    <script type='text/javascript' src='OpenLayers.js'></script>
+    <script src='http://maps.google.com/maps/api/js?sensor=false'></script>
+</head>
+<body>
+    <div id='map_element' style='width: 500px; height: 500px;'></div>
+</body>
+
+<script type='text/javascript'>
+    //Define a global variable called map so we can access it outside the
+    //  init() function
+    var map;
+
+    function init() {
+        map = new OpenLayers.Map('map_element', {
+            //We're going to use a base Google map, so we need to
+            //use the 900913 projection
+            projection: new OpenLayers.Projection('EPSG:900913'),
+            
+            //And set the bounds.  This roughly translates to -180, -90, 180, 90
+            maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508)
+        });
+        
+        //Create a google layer
+        var google_layer = new OpenLayers.Layer.Google(
+            'My Google Layer',
+            {}
+        );
+        
+        //Create a WMS layer
+        var wms_layer = new OpenLayers.Layer.WMS(
+            'OpenLayers WMS',
+            'http://vmap0.tiles.osgeo.org/wms/vmap0',
+            {
+                //WMS parameters sent to server
+                layers: 'basic' 
+            },
+            {
+                //OpenLayers Layer options
+                //Set the opacity to 70% opaque 
+                opacity:.7, 
+                //Set the base layer to false so it sits on top of Google
+                isBaseLayer: false
+            }
+        );
+     
+        //Add the two layers to the map
+        map.addLayers([google_layer, wms_layer]);
+        
+        //Create a control object then add it to the map
+        var layer_switcher = new OpenLayers.Control.LayerSwitcher({});
+        map.addControl(layer_switcher);
+        
+        //Add some controls on the fly
+        map.addControls([
+            new OpenLayers.Control.ScaleLine({}),
+            new OpenLayers.Control.MousePosition({})
+        ]);
+        
+        //Try to zoom to the map
+        if(!map.getCenter()){
+            map.zoomToMaxExtent();
+        }        
+    }
+    
+    //Call init function
+    init();
+</script>
+</html>

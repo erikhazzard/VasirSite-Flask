@@ -1,0 +1,124 @@
+{% extends "_base.html" %}
+
+{% block head_title %}
+    OpenLayers Book | 
+{% endblock %}
+{% block site_content %}
+<div class='dev_page_project_wrapper'>
+    <h2>OpenLayers Book</h2>
+    <a href='https://www.packtpub.com/openlayers-2-1-javascript-web-mapping-library-beginners-guide/book'
+    title="OpenLayers 2.10 - Beginner's Guide"
+    target='_blank'
+    rel='nofollow'>
+        <img src='http://vasirsite.s3.amazonaws.com/img/openlayers_book_cover.jpg' 
+            alt='OpenLayers Book Cover Image'
+            id='openlayers_book_image'
+            width=200 height=250 />
+    </a>   
+    <h3>OpenLayers -OpenLayers 2.10 Beginner's Guide </h3>
+    The aim of this book is to provide a guide for beginners and also serve as a reference (but not a replacement for the OpenLayers docs).  We use examples throughout the book to deomstrate OpenLayers concepts.  This site will serve as extension for the OpenLayers book and contain code samples, error fixes, and other related things.  
+    <br /><br />
+    <br />
+    <h3 style='font-size:1.9em;'>
+    <a href='https://www.packtpub.com/openlayers-2-1-javascript-web-mapping-library-beginners-guide/book'
+        title='OpenLayers Book | Erik Hazzard'
+        rel='nofollow'>Buy the OpenLayers Book</a>
+    </h3>
+    <span class='grey_text'>
+        Published by Packt Publishing.  
+    </span>
+    <div class='clear'></div>
+    <br />
+    <h2>Free Sample Chapter</h2>
+    <strong>
+        <a href='https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B1E1UhGhUfptYzEwYzZmMjUtMGYwNC00MDYxLThmYjctYzllNTQzYTYzMjA1&hl=en'
+        title='OpenLayers Book Chapter 9 Download'>
+        Free Download of Chapter 9, "Using Vector Layers"
+        </a>
+    </strong>
+    <br />
+    <strong>Chapter 9</strong>, "Using Vector Layers", contains information on how to set up and use the vector layer.  We cover how to work with feature objects, load in data from geospatial files (e.g., GeoJSON and KML), use the Strategy classes (such as the Cluster strategy), and much more.
+
+    <br /><br />
+    <br /><br />
+
+    <h2>Code Files</h2>
+        <a href='http://s3.amazonaws.com/vasirsite/OpenLayers_Book_Sourcecode.zip'
+        title='Download OpenLayers Book Source Code'>
+        Download OpenLayers Book Source Code</a> 
+        <span class='grey_text'><em>(.zip archive)</em></span>
+    <br />
+    The source code files are grouped by chapter and example.  To download the code, click the link above. 
+
+    <br /><br />
+    <br /><br />
+
+    <h2>Errata</h2>
+    Errors in the book are listed below.  If you find any errors, please email me. Thanks!
+    <br />
+    <br />
+    <div id='errata_list'>
+        <div class='blog_post_item'>
+            <strong>Page 22</strong> 
+            On the description for line 20, it says <br />
+            "Line [20]: map.addLayer(wms);"
+            <br />It should say: <br />
+            "Line [20]: map.addLayer(wms_layer);"
+            <br />
+
+            <strong>Page 150</strong> 
+            In the description of OverviewMap functions, it mentioned "layer switcher" control when it should
+            instead mention the overview map control
+            <br />
+
+            <strong>Page 160</strong> 
+            On line 7 in the Description column, there is a typo: "OpenLayers.Contro.lTYPE_TOGGLE"
+            <br /> It should read "OpenLayers.Control.TYPE_TOGGLE"
+            <br />
+
+            <strong>Page 162</strong> 
+            In the code example, "var my_button" should read "var control_button"
+            <br />
+
+            <strong>Page 189</strong> 
+            The link for ExtJS should read "http://www.sencha.com/products/extjs/"
+            <br />
+
+            <strong>Page 207</strong> 
+            In step 2 of Time for Action, there is a misplaced semi-colon typo:<br />
+            "map.panTo(new OpenLayers.LonLat (-18,42) ; )" should read<br />
+            "map.panTo(new OpenLayers.LonLat (-18,42)); "
+            <br />
+
+            <strong>Page 221</strong> 
+            "var map1, map2;" shoud be "var map_1, map_2;"
+            <br />
+
+            <strong>Page 254</strong> The description of Geometry.LinearRing reads
+            "pass in an array of LineString...", but it should read "pass in an array of Points..."
+            <br />
+
+            <strong>Page 271</strong>
+            In the code, "Create a format object var format_...." should have a comment tag
+            "//Create a format object"
+            <br />
+
+            <strong>Page 272</strong> 5. should read "Put the code below after map.addLayer."
+            <br />
+
+            <strong>Page 278</strong>
+            "A symbolizer is just an an ..." should read "A symbolizer is just an ..."
+            <br />
+
+            <strong>Page 293</strong> 6. uses an incorrect variable name:
+            "feature_symbolizers_lookup);" should read "symbolizers_lookup);"
+            <br />
+
+            <strong>Page 315</strong> Typo in 4.  "extractAttribtues" -> 
+            should be "extractAttributes"
+            <br />
+        </div>
+    </div>
+
+</div>
+{% endblock %}

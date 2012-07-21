@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>vasir.net | OpenLayers Tutorial Part 3 | Controls Example 9 - Panels</title>
+</head>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<script type="text/javascript">
+
+//Set up a global variable to hold our map object
+var map;
+
+function init(){
+    
+    map = new OpenLayers.Map('map');
+
+    var wms = new OpenLayers.Layer.WMS(
+        "OpenLayers WMS",
+        "http://labs.metacarta.com/wms/vmap0",
+        {layers: 'basic'}
+    );
+
+    //Add a WMS layer to the map
+    map.addLayers([wms]);
+    
+    //Create and add a panel to the map
+    var external_panel = new OpenLayers.Control.Panel({
+                    div: document.getElementById('panel') });
+    
+    map.addControl(external_panel);
+    
+    //Create and add zoom in and zoom out controls and add them to the map
+    var control_zoom_in = new OpenLayers.Control.ZoomIn();
+    var control_zoom_out = new OpenLayers.Control.ZoomOut();
+    
+    map.addControl(control_zoom_in);
+    map.addControl(control_zoom_out);
+
+    //Add the previously created controls to the panel    
+    external_panel.addControls([control_zoom_in, control_zoom_out]);
+    
+    //Zoom to the map's max extent
+    map.zoomToMaxExtent();
+}
+</script>
+<body onload="init()">
+
+<div id="map" style="width: 600px; height: 300px"></div>
+<div id="panel"></div>
+<!-- Clear any floated divs from the panel -->
+<div style="clear:both"></div>
+</body>
+</html>    

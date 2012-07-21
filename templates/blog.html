@@ -1,0 +1,62 @@
+{% extends "blog_base.html" %}
+
+{% block head_title %}
+    {% if filter_type %}
+        {{filter_value|capfirst}} | 
+    {% endif %}
+{% endblock head_title %}
+
+{% block content_left %}
+{% if filter_type %}
+    <div class='filter_type_info'>
+        <h1>
+            {{filter_value|capfirst}} : {{posts|length}} posts</h1>
+        </h1>
+    </div>
+{% endif %}
+
+{% for post in posts %}
+<div class='blog_post_item'>
+    <h2>
+        <a href='/blog/{{post.category.slug}}/{{post.slug}}/'
+            title='{{post.title}}'>
+            {{post.title}}
+        </a>
+    </h2>
+    <div class='blog_post_item_description'>
+        {{post.description|safe}}
+    </div>
+    <div class='blog_post_read_more grey_text'>
+        Posted on {{post.post_date}} | 
+        <a href='/blog/{{post.category.slug}}/{{post.slug}}/'
+            title='{{post.title}}' rel='nofollow'>
+            Read More &gt;
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+<div class='pagination_wrapper'>
+    {% if total_pages > 0 %}
+        {% if previous_page %}
+        <div class='pagination_prev_page'>
+            <a href='/blog/page/{{previous_page}}/' title='Previous Page'>
+                &lt; Previous Page 
+            </a>
+        </div>
+        {% endif %}
+
+        <div class='pagiation_cur_page'>
+            Page {{current_page}} of {{total_pages}}<br />
+        </div>
+
+        {% if next_page %}
+        <div class='pagination_next_page'>
+            <a href='/blog/page/{{next_page}}/' title='Next Page'>
+                Next Page &gt;
+            </a>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock content_left %}
