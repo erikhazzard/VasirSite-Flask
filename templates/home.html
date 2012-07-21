@@ -1,7 +1,92 @@
 {% extends "_base.html" %}
 
-{% block title %}{% endblock %}
-
 {% block site_content %}
-    Hello world
-{% endblock %}
+<!-- ========================
+Home Page Div 
+========================= -->
+<div id='about_and_work_wrapper'>
+    <div id='about_wrapper'>
+        <div id='about'>
+            <h2>who</h2>
+            I am a passionate web developer.<br />
+            I specialize in python, javascript, and web standards. <br />
+            I am an open source zealot. <br />
+            <br />
+            <strong>Current Role</strong> Principal Software Engineer @ 
+            <a href='http://visual.ly' target='_blank' 
+                title="Visual.ly The world's largest community for sharing infographics and data visualizations.">
+                Visual.ly
+            </a>
+            <br />
+            <br />
+            Find me on <a href='http://github.com/enoex' rel='nofollow'
+                    title='Erik Hazzard GitHub profile'>Github</a> 
+                or follow me on 
+            <a href='http://twitter.com/enoex' rel='nofollow'
+                    title='Follow me on twitter'>Twitter</a> 
+        </div>
+    </div>
+
+    <div id='work_wrapper'>
+        <div id='work'>
+            <h2>my latest project</h2>
+            <h3>
+                <a href='/openlayers_book/' title='OpenLayers Book'>
+                    OpenLayers Book: OpenLayers 2.10 Beginner's Guide
+                </a>
+            </h3>
+            <br />
+            <a href='https://www.packtpub.com/openlayers-2-1-javascript-web-mapping-library-beginners-guide/book'
+            title="OpenLayers 2.10 - Beginner's Guide"
+            target='_blank'
+            rel='nofollow'>
+            <img src='http://vasirsite.s3.amazonaws.com/img/openlayers_book_cover.jpg' 
+                    alt='OpenLayers Book Cover Image'
+                    id='openlayers_book_image'
+                    width=200 height=250 />
+            </a>
+            <br />
+            <br />
+            <br />
+            <h2 style='font-size:1.8em;'>
+                <a href='https://www.packtpub.com/openlayers-2-1-javascript-web-mapping-library-beginners-guide/book'
+                title='OpenLayers Book | Erik Hazzard'
+                target='_blank'
+                rel='nofollow'>Buy my OpenLayers Book</a>
+            </h2>
+            <br />
+            <span class='grey_text'>
+                Published By Packt Publishing
+            </span>
+            <div class='clear'></div>
+            </div>
+    </div>
+    <div class='clear'>
+</div>
+
+<div id='latest_post_wrapper'>
+    <div id='latest_post'>
+        <h2>latest post</h2>
+        <div class='blog_post_item'>
+            {#
+            <h2>
+                <a href='/blog/{{latest_post.category.slug}}/{{latest_post.slug}}/'
+                    title='{{latest_post.title}}'>
+                    {{latest_post.title}}
+                </a>
+            </h2>
+            <div class='blog_post_item_description'>
+                {{latest_post.description|safe}}
+            </div>
+            <div class='blog_post_read_more grey_text'>
+                Posted on {{latest_post.post_date}} | 
+                <a href='/blog/{{latest_post.category.slug}}/{{latest_post.slug}}/'
+                    title='{{latest_post.title}}' rel='nofollow'>
+                    Read More &gt;
+                </a>
+            </div>
+            #}
+        </div>
+    </div>
+</div>
+{% endblock site_content %}

@@ -2,7 +2,7 @@
 
 {% block head_title %}
     {% if filter_type %}
-        {{filter_value|capfirst}} | 
+        {{filter_value|capitalize}} | 
     {% endif %}
 {% endblock head_title %}
 
@@ -10,7 +10,7 @@
 {% if filter_type %}
     <div class='filter_type_info'>
         <h1>
-            {{filter_value|capfirst}} : {{posts|length}} posts</h1>
+            {{filter_value|capitalize}} : {{posts|count}} posts</h1>
         </h1>
     </div>
 {% endif %}

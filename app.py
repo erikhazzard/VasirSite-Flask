@@ -35,23 +35,39 @@ def render_skeleton(template_name='index.html', **kwargs):
 
 @app.route('/')
 def index():
-    return flask.render_template('home.html')
+    #Get latest posts
+    ret = {}
+    ret['latest_post'] = {}
+    return render_skeleton('home.html', **ret)
 
 @app.route('/about/')
 def about():
-    return flask.render_template('about.html')
+    return render_skeleton('about.html')
 
 @app.route('/dev/')
 def dev():
-    return flask.render_template('dev.html')
+    return render_skeleton('dev.html')
 
 @app.route('/openlayers_book/')
 def book():
-    return flask.render_template('openlayers_book.html')
+    return render_skeleton('openlayers_book.html')
 
+# ==============================================================================
+# BLOG
+# ==============================================================================
 @app.route('/blog/')
-def blog():
-    return flask.render_template('blog.html')
+@app.route('/blog/<query>/')
+def blog(query=None):
+    '''Handles grabbing blog posts by date / category / tag 
+    '''
+    #Setup return object
+    ret = {}
+
+    ret['total_pages'] = 42
+
+    #Return response, pass in ret object (unpack values)
+    return render_skeleton('blog.html', **ret)
+
 # ==============================================================================
 #
 # Posts
@@ -79,6 +95,13 @@ def items(query=None):
         "num_results": num_results
     }
     return flask.jsonify(res)
+
+#----------------------------------------
+#Get the latest posts to show across all parts of the blog
+#----------------------------------------
+def get_latest_posts():
+    latest_posts = blog_models.Post.objects.order_by('-post_date')[:5]
+    return latest_posts
 
 # ==============================================================================
 #
