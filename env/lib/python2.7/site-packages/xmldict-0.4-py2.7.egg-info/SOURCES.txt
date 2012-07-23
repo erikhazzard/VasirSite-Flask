@@ -1,7 +1,0 @@
-setup.cfg
-setup.py
-xmldict.py
-xmldict.egg-info/PKG-INFO
-xmldict.egg-info/SOURCES.txt
-xmldict.egg-info/dependency_links.txt
-xmldict.egg-info/top_level.txt
