@@ -25,17 +25,17 @@
                         All Categories
                     </a>
                     <span class='total_post_count'>
-                        (<strong>{{all_total_posts}}</strong>)
+                        (<strong>{{total_posts}}</strong>)
                     </span>
                 </li>
-            {% for category in all_categories %}
+            {% for category, val in categories.items() %}
                 <li>
-                    <a href='/blog/{{category.slug}}/'
-                        title='{{category.description}}'>
-                        {{category.name}}
+                    <a href='/blog/{{category}}/'
+                        title='{{category}}'>
+                        {{val.pretty_name}} 
                     </a>
                     <span class='total_post_count'>
-                        (<strong>{{category.get_post_count}}</strong>)
+                        (<strong>{{val.num}}</strong>)
                     </span>
                 </li>
             {% endfor %}
@@ -61,7 +61,7 @@
             <ul>
             {% for post in latest_posts %}
                 <li>
-                    <a href='/blog/{{post.category.slug}}/{{post.slug}}/'
+                    <a href='/blog/{{post.category}}/{{post.slug}}/'
                         title='{{post.description}}'>
                         {{post.title}}
                     </a>

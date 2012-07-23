@@ -18,7 +18,7 @@
 {% for post in posts %}
 <div class='blog_post_item'>
     <h2>
-        <a href='/blog/{{post.category.slug}}/{{post.slug}}/'
+        <a href='/blog/{{post.category}}/{{post.slug}}/'
             title='{{post.title}}'>
             {{post.title}}
         </a>
@@ -28,7 +28,7 @@
     </div>
     <div class='blog_post_read_more grey_text'>
         Posted on {{post.post_date}} | 
-        <a href='/blog/{{post.category.slug}}/{{post.slug}}/'
+        <a href='/blog/{{post.category}}/{{post.slug}}/'
             title='{{post.title}}' rel='nofollow'>
             Read More &gt;
         </a>
@@ -36,6 +36,7 @@
 </div>
 {% endfor %}
 
+{#
 <div class='pagination_wrapper'>
     {% if total_pages > 0 %}
         {% if previous_page %}
@@ -59,4 +60,5 @@
         {% endif %}
     {% endif %}
 </div>
+#}
 {% endblock content_left %}

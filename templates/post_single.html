@@ -1,24 +1,24 @@
-{% extends "blog_base.html" %}
+{% extends 'blog_base.html' %}
 
 {% block head_title %}
-    {{post.title}} | 
+    {{posts[0].title}} | 
 {% endblock head_title %}
 
 {% block content_left %}
 <div class='post_single_wrapper'>
     <div class='post_single_title'>
-        <h1>{{post.title}}</h1>
+        <h1>{{posts[0].title}}</h1>
     </div>
     <div class='grey_text post_submission_info'>
         Posted in 
-        <a href='/blog/{{post.category.slug}}/'
-            title='{{post.category.name}}'>
-            {{post.category.name}}</a>
-        on {{post.post_date}}
+        <a href='/blog/{{posts[0].category}}/'
+            title='{{posts[0].category}}'>
+            {{posts[0].category|capitalize}}</a>
+        on {{posts[0].post_date}}
     </div>
     <!-- POST CONTENT -->
     <div class='post_single_content'>
-        {{post.content|safe}}
+        {{posts[0].content|safe}}
     </div>
     <!-- POST CONTENT END -->
 </div>

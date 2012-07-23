@@ -56,45 +56,82 @@ def book():
 # BLOG
 # ==============================================================================
 @app.route('/blog/')
-@app.route('/blog/<query>/')
-def blog(query=None):
+@app.route('/blog/<category>/')
+@app.route('/blog/<category>/<slug>/')
+def blog(category=None, slug=None):
     '''Handles grabbing blog posts by date / category / tag 
     '''
     #Setup return object
-    ret = {}
+    ret = {
+        'posts': [],
+        'post': False,
+        'categories': {}
+    }
+    #Template name will be either blog.html (for all posts / categories)
+    #   or post_single.html (for individual posts)
+    template_name = 'blog.html'
 
-    ret['total_pages'] = 42
+    #------------------------------------
+    #Get posts based on query
+    #------------------------------------
+    if category is None and slug is None:
+        #All posts
+        db_posts = DB.posts.find().sort('post_date', -1)
+
+    elif category is not None and slug is None:
+        #Only category posts
+        db_posts = DB.posts.find({
+            'category': category    
+        }).sort('post_date', -1)
+
+    elif category is not None and slug is not None:
+        #Single post
+        db_posts = DB.posts.find({
+            'slug': slug
+        }).sort('post_date', -1)
+
+        #Render to the single post page
+        template_name = 'post_single.html'
+
+    #------------------------------------
+    #Setup response
+    #------------------------------------
+    #For all posts, category, and tag pages
+    #Posts that are shown in left side of page
+    for post in db_posts:
+        #Add to the posts
+        ret['posts'].append(post)
+
+    #------------------------------------
+    #For all pages
+    #------------------------------------
+    #Info about posts
+    all_posts = []
+    #Get ALL posts
+    all_db_posts = DB.posts.find().sort('post_date', -1)
+    for post in all_db_posts:
+        all_posts.append(post)
+
+         #Keep track of categories for ALL posts
+        try:
+            ret['categories'][post['category']]['num'] += 1
+        except KeyError:
+            ret['categories'][post['category']] = {}
+            #Keep track of count
+            ret['categories'][post['category']]['num'] = 1
+            #Get nice name to show
+            ret['categories'][post['category']][
+                'pretty_name'] = post['category'].replace(
+                '_', ' ').capitalize()
+
+    #Get latest posts, which is just the last 5 posts
+    ret['latest_posts'] = all_posts[0:5]
+
+    #If no category and slug was passed, they're asking for all posts
+    ret['total_posts'] = len(all_posts)
 
     #Return response, pass in ret object (unpack values)
-    return render_skeleton('blog.html', **ret)
-
-# ==============================================================================
-#
-# Posts
-#
-# ==============================================================================
-@app.route('/items/')
-@app.route('/items/<query>/')
-def items(query=None):
-    '''Gets items from mongo based on query
-    '''
-    #Get the items from the database based on the query (if any)
-    db_items = get_items_from_query(query)
-
-    items = [] 
-    for item in db_items:
-        #Remove the _id since it's returned as an ObjectID object
-        del(item['_id'])
-        items.append(item)
-
-    #Get the total length
-    num_results = len(items)
-    
-    res = {
-        "models": items, 
-        "num_results": num_results
-    }
-    return flask.jsonify(res)
+    return render_skeleton(template_name, **ret)
 
 #----------------------------------------
 #Get the latest posts to show across all parts of the blog

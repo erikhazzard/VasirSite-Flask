@@ -1365,4 +1365,24 @@ You can &lt;a href='/static/vasir/shrug_presentation/hazzard_openlayers_openoffi
 &lt;br /&gt;&lt;br /&gt;
 You can also &lt;a href='/static/vasir/shrug_presentation/code.zip'&gt;download the code archive in .zip format&lt;/a&gt;</column>
     </table>
+
+    <table name="vasir_blog_post">
+      <column name="slug" type="3">openlayers_book_intro</column>
+      <column name="title" type="3">OpenLayers 2.10 Beginner's Guide</column>
+      <column name="post_date" type="3">2011-03-16 22:07:14</column>
+      <column name="post_last_edit_date" type="3">2011-03-16 22:07:15</column>
+      <column name="num_views" type="0">null</column>
+      <column name="related_image" type="3"/>
+      <column name="category_id" type="3">my-openlayers-book</column>
+      <column name="content" type="3">The aim of this book is to provide a guide for beginners and also serve as a reference (but not a replacement for the OpenLayers docs). We use examples throughout the book to demonstrate OpenLayers concepts. This site will serve as extension for the OpenLayers book and contain code samples, error fixes, and other related things. 
+This OpenLayers book is available at &lt;a href='https://www.packtpub.com/openlayers-2-1-javascript-web-mapping-library-beginners-guide/book' target='_blank' title='OpenLayers Beginner Guide published by Packt'&gt;OpenLayers Book 2.10 Beginner's Guide&lt;/a&gt;.
+&lt;br /&gt;
+As errors and corrections are found, I will be posting updates.  You can find the code, along with a free chapter (Chapter 9 - Using Vector Layers) in the &lt;a href='http://vasir.net/openlayers_book'&gt;openlayers book section&lt;/a&gt; of my site.  If you find any errors or things that should be addressed, please e-mail me at enoex1 .at. gmail.
+      </column>
+      <column name="description" type="3">The aim of this book is to provide a guide for beginners and also serve as a reference (but not a replacement for the OpenLayers docs). We use examples throughout the book to demonstrate OpenLayers concepts. This site will serve as extension for the OpenLayers book and contain code samples, error fixes, and other related things. 
+This OpenLayers book is available at &lt;a href='https://www.packtpub.com/openlayers-2-1-javascript-web-mapping-library-beginners-guide/book' target='_blank' title='OpenLayers Beginner Guide published by Packt'&gt;OpenLayers Book 2.10 Beginner's Guide&lt;/a&gt;.
+&lt;br /&gt;
+As errors and corrections are found, I will be posting updates.  You can find the code, along with a free chapter (Chapter 9 - Using Vector Layers) in the &lt;a href='http://vasir.net/openlayers_book'&gt;openlayers book section&lt;/a&gt; of my site.  If you find any errors or things that should be addressed, please e-mail me at enoex1 .at. gmail.
+      </column>
+    </table>
   </database>

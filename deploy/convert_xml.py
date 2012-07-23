@@ -40,7 +40,7 @@ def convert():
     for card in posts:
         #Create an object from the existing one
         temp_post = {}
-        temp_post['slug-name'] = card['column'][0]['#text']
+        temp_post['slug'] = card['column'][0]['#text']
         temp_post['title'] = card['column'][1]['#text']
         temp_post['post_date'] = card['column'][2]['#text']
         temp_post['post_last_edit_date'] = card['column'][3]['#text']
