@@ -141,6 +141,8 @@ def blog(category=None, slug=None):
         'template_name': template_name,
         'ret': ret
     }
+    #Save to cache
+    #TODO: set TTL
     redisClient.set(cache_key, json.dumps(cache_dict))
 
     #Return response, pass in ret object (unpack values)
