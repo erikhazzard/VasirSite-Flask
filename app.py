@@ -5,9 +5,8 @@
 # ==============================================================================
 import flask
 import pymongo 
-import datetime
+import redis
 import json
-import re
 from backend import settings
 
 # ==============================================================================
@@ -22,6 +21,10 @@ DB = DB_CONNECTION.vasir_site
 #Settings from config
 PORT = getattr(settings, 'PORT', 8080)
 ENV = getattr(settings, 'ENV', 'develop')
+
+#Get redis connection
+redisClient = redis.StrictRedis(host='localhost', port=6379, db=0)
+CACHE_PREFIX = 'vasir_site:'
 
 # ==============================================================================
 #
@@ -67,12 +70,23 @@ def blog(category=None, slug=None):
         'post': False,
         'categories': {}
     }
+    
     #Template name will be either blog.html (for all posts / categories)
     #   or post_single.html (for individual posts)
     template_name = 'blog.html'
 
     #------------------------------------
-    #Get posts based on query
+    #Get from cache
+    #------------------------------------
+    cache_key = CACHE_PREFIX + json.dumps({'category': category, 'slug': slug})
+    cache_res = redisClient.get(cache_key)
+    #If there's something in the cache, return it
+    if cache_res is not None:
+        cached = json.loads(cache_res) 
+        return render_skeleton(cached['template_name'], **cached['ret'])
+
+    #------------------------------------
+    #Not cached, Get posts based on query
     #------------------------------------
     if category is None and slug is None:
         #All posts
@@ -100,6 +114,8 @@ def blog(category=None, slug=None):
     #Posts that are shown in left side of page
     for post in db_posts:
         #Add to the posts
+        #Don't use _id
+        post.pop('_id')
         ret['posts'].append(post)
 
     #------------------------------------
@@ -107,28 +123,25 @@ def blog(category=None, slug=None):
     #------------------------------------
     #Info about posts
     all_posts = []
-    #Get ALL posts
-    all_db_posts = DB.posts.find().sort('post_date', -1)
-    for post in all_db_posts:
-        all_posts.append(post)
 
-         #Keep track of categories for ALL posts
-        try:
-            ret['categories'][post['category']]['num'] += 1
-        except KeyError:
-            ret['categories'][post['category']] = {}
-            #Keep track of count
-            ret['categories'][post['category']]['num'] = 1
-            #Get nice name to show
-            ret['categories'][post['category']][
-                'pretty_name'] = post['category'].replace(
-                '_', ' ').capitalize()
+    #Get ALL posts and categories
+    all_posts, ret['categories'] = get_all_posts_and_categories()
 
     #Get latest posts, which is just the last 5 posts
     ret['latest_posts'] = all_posts[0:5]
 
     #If no category and slug was passed, they're asking for all posts
     ret['total_posts'] = len(all_posts)
+
+    #------------------------------------
+    #Save to cache
+    #------------------------------------
+    #Save to cache
+    cache_dict =  {
+        'template_name': template_name,
+        'ret': ret
+    }
+    redisClient.set(cache_key, json.dumps(cache_dict))
 
     #Return response, pass in ret object (unpack values)
     return render_skeleton(template_name, **ret)
@@ -139,6 +152,56 @@ def blog(category=None, slug=None):
 def get_latest_posts():
     latest_posts = blog_models.Post.objects.order_by('-post_date')[:5]
     return latest_posts
+
+def get_all_posts_and_categories():
+    '''Grabs all the posts and categories from the DB,
+    using redis for cache
+    '''
+    #Check cache
+    all_db_posts = DB.posts.find().sort('post_date', -1)
+
+    cache_key = CACHE_PREFIX + 'all_posts_categories'
+    cache_res = redisClient.get(cache_key)
+    #If there's something in the cache, return it
+    if cache_res is not None:
+        cached = json.loads(cache_res) 
+        return (cached['all_posts'], cached['categories'])
+
+    #------------------------------------
+    #Not cached, setup posts and categories
+    #------------------------------------
+    all_posts = []
+    categories = {}
+    
+    #Get posts
+    for post in all_db_posts:
+        #Don't use _uid
+        post.pop('_id')
+        all_posts.append(post)
+
+         #Keep track of categories for ALL posts
+        try:
+            categories[post['category']]['num'] += 1
+        except KeyError:
+            categories[post['category']] = {}
+            #Keep track of count
+            categories[post['category']]['num'] = 1
+            #Get nice name to show
+            categories[post['category']][
+                'pretty_name'] = post['category'].replace(
+                '_', ' ').capitalize()
+
+    #------------------------------------
+    #Set cache
+    #------------------------------------
+    cache_dict =  {
+        'all_posts': all_posts,
+        'categories': categories
+    }
+    #Write it
+    redisClient.set(cache_key, json.dumps(cache_dict))
+
+    return (all_posts, categories)
 
 # ==============================================================================
 #
