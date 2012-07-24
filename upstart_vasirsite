@@ -1,0 +1,54 @@
+#/etc/init/vasirsite.conf
+
+#-----------------------------------------------------------------------------
+#upstart_vasirsite
+#------------
+#   This is a startup script which will be used to manage the gunicorn vasirsite
+#       To start the service, simply call "start vasirsite"
+#       To stop the service, simply call "stop vasirsite"
+#
+#   Monit is used to monitor that the PID of this service (node) is constantly
+#       running.  If the Node server ever crashes, Monit will (eventually)
+#       restart it (using this script, calling start visually_node)
+#
+#   NOTE: PLACE THIS FILE IN /etc/init/vasitesite.conf
+#-----------------------------------------------------------------------------
+#----------------------------------------
+#Some meta
+#----------------------------------------
+description "VasirSite gunicorn startup script"
+
+#----------------------------------------
+#Start when server starts, shutdown when server shuts down
+#----------------------------------------
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+#----------------------------------------
+#Script that is run when start is called
+#----------------------------------------
+script
+    #Store this process' ID
+    echo $$ > /var/run/gunicorn_vasirsite
+    #Start up the node server and log output to /var/log/gunicorn_vasirsite.log
+    exec sudo -u root sh -c "/home/erik/Code/VasirSite-Flask/run_gunicorn.sh >> /var/log/gunicorn_vasirsite.log 2>&1"
+end script
+
+#----------------------------------------
+#This gets executed before start is called
+#----------------------------------------
+pre-start script
+    #Log start time
+    echo "[`date '+%Y-%m-%dT%T'`] Gunicorn VasirSite Starting" >> /var/log/gunicorn_vasirsite.log
+end script
+
+#----------------------------------------
+#This gets executed before stop is called
+#----------------------------------------
+pre-stop script
+    #Remove .pid file we created above
+    rm /var/run/visually_node.pid
+    #Log stop time
+    echo "[`date '+%Y-%m-%dT%T'`] Gunicorn VasirSite Stopping " >> /var/log/gunicorn_vasirsite.log
+end script
+
