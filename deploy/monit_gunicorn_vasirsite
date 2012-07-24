@@ -1,0 +1,4 @@
+check process gunicorn-vasirsite
+    with pidfile /var/run/upstart_vasirsite.pid
+    start program = "/sbin/start vasirsite"
+    stop program = "/sbin/stop vasirsite"
