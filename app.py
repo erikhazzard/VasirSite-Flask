@@ -40,7 +40,7 @@ def render_skeleton(template_name='index.html', **kwargs):
 def index():
     #Get latest posts
     ret = {}
-    ret['latest_post'] = {}
+    ret['latest_post'] = {}# get_latest_post()
     return render_skeleton('home.html', **ret)
 
 @app.route('/about/')
@@ -151,9 +151,32 @@ def blog(category=None, slug=None):
 #----------------------------------------
 #Get the latest posts to show across all parts of the blog
 #----------------------------------------
-def get_latest_posts():
-    latest_posts = blog_models.Post.objects.order_by('-post_date')[:5]
-    return latest_posts
+def get_latest_post():
+    cache_key = CACHE_PREFIX + 'latest_post'
+    cache_res = redisClient.get(cache_key)
+    #If there's something in the cache, return it
+    if cache_res is not None:
+        cached = json.loads(cache_res) 
+        return cached['latest_post']
+
+    #Not in cache, get posts
+    latest_post = DB.posts.find().sort('post_date', -1)[0:1]
+
+    #get the last post
+    tmp_post = False
+    for post in latest_post:
+        tmp_post = post
+
+    latest_post = tmp_post
+
+    #Set cache
+    cache_dict =  {
+        'latest_post': latest_post
+    }
+    #Write it
+    redisClient.set(cache_key, json.dumps(cache_dict))
+
+    return latest_post
 
 def get_all_posts_and_categories():
     '''Grabs all the posts and categories from the DB,

@@ -68,24 +68,22 @@ Home Page Div
     <div id='latest_post'>
         <h2>latest post</h2>
         <div class='blog_post_item'>
-            {#
             <h2>
-                <a href='/blog/{{latest_post.category.slug}}/{{latest_post.slug}}/'
+                <a href='/blog/{{latest_post.category}}/{{latest_post.slug}}/'
                     title='{{latest_post.title}}'>
                     {{latest_post.title}}
                 </a>
             </h2>
             <div class='blog_post_item_description'>
-                {{latest_post.description|safe}}
+                {{latest_post.description}}
             </div>
             <div class='blog_post_read_more grey_text'>
                 Posted on {{latest_post.post_date}} | 
-                <a href='/blog/{{latest_post.category.slug}}/{{latest_post.slug}}/'
+                <a href='/blog/{{latest_post.category}}/{{latest_post.slug}}/'
                     title='{{latest_post.title}}' rel='nofollow'>
                     Read More &gt;
                 </a>
             </div>
-            #}
         </div>
     </div>
 </div>
