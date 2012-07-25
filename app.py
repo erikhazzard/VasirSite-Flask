@@ -40,7 +40,7 @@ def render_skeleton(template_name='index.html', **kwargs):
 def index():
     #Get latest posts
     ret = {}
-    ret['latest_post'] = {}# get_latest_post()
+    ret['latest_post'] = get_latest_post()
     return render_skeleton('home.html', **ret)
 
 @app.route('/about/')
@@ -165,6 +165,7 @@ def get_latest_post():
     #get the last post
     tmp_post = False
     for post in latest_post:
+        post.pop('_id')
         tmp_post = post
 
     latest_post = tmp_post
