@@ -322,7 +322,7 @@ By default, OpenLayers adds a few controls to your map, such as mouse navigation
 &lt;pre&gt;
 var map = new OpenLayers.Map('map', { controls: [] });
 &lt;/pre&gt;
-&lt;div class="post_foot_note"&gt;To see an implmentation of this code, view &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo1_no_controls.html" title="OpenLayers Control Example"&gt;OpenLayers Control Part 3 - No controls&lt;/a&gt;.&lt;/div&gt;
+&lt;div class="post_foot_note"&gt;To see an implmentation of this code, view &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo1_no_controls.html" title="OpenLayers Control Example"&gt;OpenLayers Control Part 3 - No controls&lt;/a&gt;.&lt;/div&gt;
 &lt;br /&gt;What we're doing here is creating a new OpenLayers.Map object and passing in the ID of the element (typically a div element) that we want the map to appear in.  The next bit &lt;pre&gt;,{ controls: [] }&lt;/pre&gt; is where we specify additional parameters to pass in to create the map.  Keep in mind these parameters are called in such a way of key: value, with multiple 'keys' separated by commas.  The curly brackets denote that we're passing in key:value pair(s) (in this case, just one key:value pair).  
 &lt;br /&gt;The key is &lt;em&gt;controls&lt;/em&gt;, and the value is [], which is an empty array element in Javascript.  We are passing in no OpenLayers.Controls - basically, we're telling OpenLayers that we want this map object we're creating to have an empty array of controls; i.e. this map will have no controls.
 &lt;h3&gt;Map With Controls&lt;/h3&gt;
@@ -352,7 +352,7 @@ map_controls = [ new OpenLayers.Control.OverviewMap() ];
 map = new OpenLayers.Map('map', {controls: map_controls});
 &lt;/pre&gt;
 &lt;div class="post_foot_note"&gt;
-The full code can be found at &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo2_overview.html" title="OpenLayers Control Example"&gt;OpenLayers Overview Map Control&lt;/a&gt;.
+The full code can be found at &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo2_overview.html" title="OpenLayers Control Example"&gt;OpenLayers Overview Map Control&lt;/a&gt;.
 &lt;/div&gt;
 
 &lt;br /&gt;Notice the only control is the Overview Map.  We can add more controls by simply seperating them commas.  
@@ -361,7 +361,7 @@ map_controls = [ new OpenLayers.Control.OverviewMap(), new OpenLayers.Control.La
 map = new OpenLayers.Map('map', {controls: map_controls});
 &lt;/pre&gt;
 &lt;div class="post_foot_note"&gt;
-A demo with this code can be found at &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo3_overview.html" title="OpenLayers Control Example"&gt;OpenLayers Overview Map and Layer Switcher Control&lt;/a&gt;.
+A demo with this code can be found at &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo3_overview.html" title="OpenLayers Control Example"&gt;OpenLayers Overview Map and Layer Switcher Control&lt;/a&gt;.
 &lt;br /&gt;&lt;/div&gt;
 Here we have both the overview map and layer switcher; but nothing else.  Finally, before we move on, let's add those two controls and some of the defaul controls OpenLayers add to have a more functional map.
 &lt;pre&gt;
@@ -373,7 +373,7 @@ Here we have both the overview map and layer switcher; but nothing else.  Finall
     
     map = new OpenLayers.Map('map', {controls: map_controls});
 &lt;/pre&gt;
-&lt;div class="post_foot_note"&gt;Notice that the controls are seperated by commas, but I have also added new lines for readability.  The code will work the same if there are no line breaks, but it won't be as readable.  Again, you can see the demo at at &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo4_somedefaults.html" title="OpenLayers Control Example"&gt;OpenLayers Adding Base Controls&lt;/a&gt;.
+&lt;div class="post_foot_note"&gt;Notice that the controls are seperated by commas, but I have also added new lines for readability.  The code will work the same if there are no line breaks, but it won't be as readable.  Again, you can see the demo at at &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo4_somedefaults.html" title="OpenLayers Control Example"&gt;OpenLayers Adding Base Controls&lt;/a&gt;.
 &lt;/div&gt;
 &lt;br /&gt;Now that we know how this works though, let's move on to something a bit more common.
 
@@ -385,7 +385,7 @@ We're going to let OpenLayers add some of the basic controls for us.  You may no
     map.addControl(new OpenLayers.Control.OverviewMap());
 &lt;/pre&gt;
 &lt;div class="post_foot_note"&gt;
-You can view the demo at &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo5_addcontrols.html" title="OpenLayers Adding Controls Example"&gt;OpenLayers Adding Controls&lt;/a&gt;.&lt;/div&gt;
+You can view the demo at &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo5_addcontrols.html" title="OpenLayers Adding Controls Example"&gt;OpenLayers Adding Controls&lt;/a&gt;.&lt;/div&gt;
 &lt;br /&gt;Since we didn't pass in controls to the map object, the default controls are added automatically.  The next line is where we actually add the control to the map.  
 &lt;pre&gt;map.addControl(new OpenLayers.Control.OverviewMap()); &lt;/pre&gt;
 &lt;em&gt;map&lt;/em&gt; is our map object we just created, and &lt;em&gt;addControl&lt;/em&gt; is a function call we make that -takes in- an OpenLayers Control object and adds it to the map.  In this case, we are passing in &lt;em&gt;new OpenLayers.Control.OverviewMap()&lt;/em&gt;.  OverviewMap is the class, and we are creating an object from the class by typing &lt;em&gt;new&lt;/em&gt; before it.  
@@ -427,7 +427,7 @@ When we create a control, we define what options we want it to be created with. 
                 ));
 &lt;/pre&gt;
 &lt;div class="post_foot_note"&gt;
-These are the most relevant lines, but you can take a look at the &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo6_customize_overview.html" title="OpenLayers Adding Controls Example"&gt;customizing overview map control demo&lt;/a&gt; to see it in action.
+These are the most relevant lines, but you can take a look at the &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo6_customize_overview.html" title="OpenLayers Adding Controls Example"&gt;customizing overview map control demo&lt;/a&gt; to see it in action.
 &lt;/div&gt;
 
 &lt;br /&gt;This may look intimidating, but let's break it down.  
@@ -477,7 +477,7 @@ Where &lt;em&gt;element&lt;/em&gt; is an HTML element (can be an element like di
 &amp;lt;/style&amp;gt;
 &lt;/pre&gt;
 &lt;div class="post_foot_note"&gt;
-View the &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo7_customize_css.html" title="OpenLayers Adding Controls CSS Example"&gt;overview map css control demo&lt;/a&gt;.
+View the &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo7_customize_css.html" title="OpenLayers Adding Controls CSS Example"&gt;overview map css control demo&lt;/a&gt;.
 &lt;/div&gt;
 Now, this is a good example although it is a little tricky, because styling the overview map is a little tricky.
 &lt;br /&gt;You'll notice we have the olControlOverviewMap element's background set as red (#ff0000) but the olControlOverviewMapElement element's background as green (#00ff00) and has !important after it.  This is to ensure that the overview map element's background is not overwritten - if we don't include any background, it is blue by default.  This is because OpenLayer's Overview Map control contains another CSS element, namely the OverviewMapElement, and we need to define it also.  Most controls are not set up this way, but the overview map is fairly common and does not exactly follow the same style guidelines as other controls.  
@@ -501,7 +501,7 @@ var external_control = new OpenLayers.Control.MousePosition({
 
 map.addControl(external_control);
 &lt;/pre&gt;
-You can &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo8_external_control.html" title="External Controls" rel="nofollow"&gt;view the external control demo here&lt;/a&gt;.
+You can &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo8_external_controls.html" title="External Controls" rel="nofollow"&gt;view the external control demo here&lt;/a&gt;.
 &lt;br /&gt;
 &lt;br /&gt;We're basically creating a MousePosition control and setting the value of &lt;em&gt;div&lt;/em&gt; to equal an HTML element with the element ID of 'external_control'.  The mouse position control is outside the div, in it's own div.  We could apply whatever style we want, either by styling the div itself (without using OpenLayers style classes) or style the control itself (using the .olControlMousePosition class), or both.
 &lt;br /&gt;
@@ -568,7 +568,7 @@ Alright, so we have those two controls added to the map; we now need to add the 
 &lt;/pre&gt;
 You'll notice we call the function &lt;em&gt;addControls&lt;/em&gt;.  To add any controls to a panel, we must call this function and pass in an array of controls - even if we only want to add one control (there is no "addControl" function, only addControls)
 &lt;br /&gt;&lt;div class="post_foot_note"&gt;
-If we take a look at the map now, we can see that it doesn't &lt;em&gt;look&lt;/em&gt; like there is a panel because we haven't applied any styles yet. &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo9_panel_no_style.html" title="External Controls in Panel - No CSS" rel="nofollow"&gt;Controls outside map demo in panel - no style&lt;/a&gt;&lt;/div&gt;
+If we take a look at the map now, we can see that it doesn't &lt;em&gt;look&lt;/em&gt; like there is a panel because we haven't applied any styles yet. &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo9_panel_no_style.html" title="External Controls in Panel - No CSS" rel="nofollow"&gt;Controls outside map demo in panel - no style&lt;/a&gt;&lt;/div&gt;
 This is because by default, there is no style associated with the zoomin or zoomout controls.  Let's finish up this demo though by adding some CSS
 &lt;h4&gt;Adding style to controls in panels&lt;/h4&gt;
 The naming convention is the same as we mentioned above for naming controls inside panels, however, as these are controls inside a panel, they have 'states' attached attached to them.  &lt;em&gt;ItemActive&lt;/em&gt; or &lt;em&gt;ItemInactive&lt;/em&gt; is added to the end of the control's class name.  For example, our zoom in button has the class name
@@ -595,7 +595,7 @@ The naming convention is the same as we mentioned above for naming controls insi
 &lt;/pre&gt;
 &lt;div class="post_foot_note"&gt;
 I'm just using the zoom-minus and zoom-plus images from OpenLayer's website to represent buttons, but you stlye them however you'd like.  
-&lt;br /&gt;Take a look at the finalized example here - &lt;a href="http://vasir.net/~erik/tutorials/openlayers_part3/demo9_panel_with_style" title="External Controls in Panel - With Style" rel="nofollow"&gt;Controls outside map demo in panel with CSS style&lt;/a&gt;
+&lt;br /&gt;Take a look at the finalized example here - &lt;a href="http://vasir.net/static/tutorials/openlayers_tutorial_part_3/demo9_panel_with_style.html" title="External Controls in Panel - With Style" rel="nofollow"&gt;Controls outside map demo in panel with CSS style&lt;/a&gt;
 &lt;/div&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 With this tutorial, hopefully you've learned how to add controls to an openlayers map, customize them a bit, give them some style, and add controls and panels outside a map.  Although this tutorial was a bit lengthy, it really just scratches the surface of what is possible to do with OpenLayers controls.  In the next tutorial, I plan to discuss how to use the OpenLayers Event system and create your own custom controls.  Stay tuned.</column>
@@ -623,7 +623,7 @@ I'll be using the word graph here a lot, and it may not be immediately obvious h
 &lt;h2&gt;Dijkstra’s Algorithm&lt;/h2&gt;
 Let's first define what exactly the problem is.  Take this graph, for instance.
 &lt;br /&gt;
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/shortest_path1.png" 
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/shortest_path1.png" 
     alt="Shortest path example" with=500 height=500
     class='center_image' /&gt;
 &lt;br /&gt;
@@ -684,7 +684,7 @@ C(x) means the current cost of getting to node x
 
 The following graph has changed a little from the one shown above.  The nodes no longer have labels, apart from our starting point NodeA and our goal NodeB.
 
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_1_1.png" 
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_1_1.png" 
     alt="Shortest Path Step 0" 
     with=500 height=500
     class='center_image' /&gt;
@@ -718,7 +718,7 @@ The top node is adjacent to the current node and has a cost of infinity.  0 (the
 &lt;br /&gt;&lt;br /&gt;
 Now, do the same calucation for the next adjacent node. which is the bottom node. The value is 0 + 2 = 2, which is also less than infinity.  To illustrate:
 &lt;br /&gt;
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_1_2.png" 
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_1_2.png" 
     alt="Shortest Path Step 2"
     with=500 height=500
     class='center_image' /&gt;
@@ -737,12 +737,12 @@ The top node has a cost of 1, which is less than 2, so we set it as permanent an
 
 &lt;h3&gt;Step 1.&lt;/h3&gt;
 Find the cheapest node.  Done, it’s set as permanent and our current node is this one.  This node value will not change.  
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_2_1.png" alt="Shortest Path Iteration 1 Step 1" /&gt;
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_2_1.png" alt="Shortest Path Iteration 1 Step 1" /&gt;
 The yellow highlight indictates the node we are currently on, and the green text means the node cost is permanent.  The nodes with white text for their costs are temporary nodes.    
 
 &lt;h3&gt;Step 2.&lt;/h3&gt;
 Assign cost values.  There is only one adjacent node to our current node.  It's current value is infinity, which is less than 1 + 10, so we assign 11 to it's temporary cost value.
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_2_2.png" alt="Shortest Path Iteration 1 Step 2"
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_2_2.png" alt="Shortest Path Iteration 1 Step 2"
     with=500 height=500
     class='center_image' /&gt;
     
@@ -763,7 +763,7 @@ We have two remaining temporary nodes with costs of 2 and 11.  2 is lower, so pi
 Let’s take a look at the graph to elucidate a bit.
 
 So, out of 11 and 2, as we said, 2 is cheaper so pick it.  We set this node’s value to be permanent and assign its parent is NodeA, demonstrated by the arrow.
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_3_1.png" alt="Shortest Path Iteration 2 Step 1"
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_3_1.png" alt="Shortest Path Iteration 2 Step 1"
      with=500 height=500
     class='center_image' /&gt;
 Notice that the parent of the top node does not, the top node still points to NodeA, because the best path from NodeA to the top node is exactly that - NodeA to the top node - again, this is a side effect of Dijkstra's algorithim in that we weren't looking for the shorest path from NodeA to the top node (we want NodeA to NodeB), but we learn about the shortest route between -any- two nodes in the graph.
@@ -771,7 +771,7 @@ Notice that the parent of the top node does not, the top node still points to No
 &lt;h3&gt;Step 2.&lt;/h3&gt; 
 Assign cost values to temporary nodes adjacent to the current node. 
 Again, like in the previous iteration, there is only one node to do a cost calculation on, as there is only one temporary node adjacent to the current node. This adjacent node is NodeB.  So, we check to see if 2 + 5 &lt; Node B’s temporary cost of 11.  It is, so we change Node B from 11 to 7.
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_3_2.png" alt="Shortest Path Iteration 2 Step 2" 
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_3_2.png" alt="Shortest Path Iteration 2 Step 2" 
     with=500 height=500
     class='center_image' /&gt;
 &lt;h3&gt;Step 3.&lt;/h3&gt;
@@ -781,7 +781,7 @@ Return to step 1
 Almost done.
 &lt;h3&gt;Step 1&lt;/h3&gt;
 Choose the cheapest temporary node value.  There is only one temporary node remaining, so we pick it and set it as permanent, set it as our current node, and set it's parent.
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/sp_4_1.png" alt="Shortest Path Iteration 3 Step 1"
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/sp_4_1.png" alt="Shortest Path Iteration 3 Step 1"
     with=500 height=500
     class='center_image' /&gt;
 
@@ -809,7 +809,7 @@ C(A) means the Cost of A&lt;br /&gt;
 C(x) means the current cost of getting to node x
 &lt;/div&gt;
 So what's this mean? Well, our start point is A so c(A) = 0 means assign A a cost of 0 and set the cost of x for every other node to infinity.  Like the following
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/shortest_path2_1.PNG" alt="Shortest path step 1"
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/shortest_path2_1.PNG" alt="Shortest path step 1"
     with=500 height=500
     class='center_image' /&gt;
 We assign a cost of 0 to our starting node A and a cost of infinity to every other node.  As before, none of these costs are permanent yet.
@@ -817,7 +817,7 @@ We assign a cost of 0 to our starting node A and a cost of infinity to every oth
 
 &lt;h3&gt;Step 1.&lt;/h3&gt;
 The node with the smallest temporary value is node A with a cost of 0.  Therefore, we're going to make it permanent - meaning c(x) and the parent will not change.
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/shortest_path2_1_a_selected.png" alt="Permanent node" /&gt;
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/shortest_path2_1_a_selected.png" alt="Permanent node" /&gt;
 The 0 will not change now.
 
 If there are no temporary nodes, or if c(x) is infinity, the algorithm stops. Now, step 2.
@@ -828,7 +828,7 @@ Basically, we're going to look at all the nodes that are connected to the curren
 So, let's first calculate the cost to get to the adjacent nodes. The cost is based on the value of the current node code plus the edge (node path) cost.  Right now, since this our first go, the cost our current node is at 0 since we haven't done any traversals.  
 &lt;br /&gt;&lt;br /&gt;
 So, let's start to figure out the c(x), the node costs.  
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/shortest_path2_1_a_selected_3.png" alt="Code of nodes" 
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/shortest_path2_1_a_selected_3.png" alt="Code of nodes" 
     with=500 height=500
     class='center_image' /&gt;
 Notice the yellow arrows.  I'm using them to designate what node it got its cost from.  Here, since there is only one possible parent node, they all point to the same place. 
@@ -845,13 +845,13 @@ So, walking through this - as step 1 says:
 &lt;div class='post_guide'&gt;
 We find node x with the smallest temporary value of c(x).   So, out of the three temporary nodes with values 3, 5, and 7 that we just worked out, the smallest value is 3.  We then make this node permanent.
 &lt;/div&gt;
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/shortest_path3_2.png" alt="Second permanent node"
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/shortest_path3_2.png" alt="Second permanent node"
     with=500 height=500
     class='center_image' /&gt;
 
 Now, this entire process just repeats itself over and over until there are no more temporary nodes.
 
-&lt;img src="http://vasir.net/~erik/tutorials/shortest_path/shortest_path_final.png" alt="Shortest path final"
+&lt;img src="http://vasir.net/static/tutorials/dijkstrasalgorithm/shortest_path_final.png" alt="Shortest path final"
     with=500 height=500
     class='center_image' /&gt;
 
